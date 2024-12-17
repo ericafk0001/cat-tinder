@@ -19,9 +19,53 @@
 
 ## About
 
-This website is tinder.. but for cats! Find your perfect partner here!! _NO HUMANS ALLOWED._ This is inspired by https://tinder4cats.com/, check them out too!
+This website is tinder.. but for cats! Find your perfect partner here!! _NO HUMANS ALLOWED._ Uses AI generated cats and randomuser API! This is inspired by https://tinder4cats.com/, check them out too!
 
 ## How does it work?
+
+1. **Random Data**:
+
+   - The app fetches data from the [Random User API](https://randomuser.me/) to generate user-like details for each cat (e.g., name, age, location).
+   - Predefined job titles are randomly assigned to each cat.
+
+2. **Preloaded Images**:
+
+   - The app uses pre-loaded AI-generated cat images, which are shuffled and assigned to profiles dynamically.
+
+3. **Interactive Buttons**:
+
+   - Clicking the "Like" or "Nope" buttons triggers:
+     - A sliding animation for the current cat.
+     - A new cat profile being fetched and displayed.
+
+4. **Reusable Components**:
+   - The `createProfile` function dynamically creates and appends each cat's profile to the DOM.
+
+---
+
+## 📂 Installation Instructions
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/your-username/cat-tinder-app.git
+   ```
+2. **Navigate to the Project Directory**:
+
+```bash
+  cd cat-tinder-app
+```
+
+3.  **Open the `index.html` File**:
+
+- Simply double-click the index.html file in the project folder to open it in your browser.
+- Alternatively, use a local development server like Live Server for a smoother experience.
+
+## 🚀 Future Enhancements:
+
+- Save liked cats to local storage for viewing later.
+- Better animations
+- Use a server for generating AI cats
+- Make my own API
 
 ## :memo: License
 
