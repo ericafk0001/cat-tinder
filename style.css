@@ -13,6 +13,12 @@ body {
   background-color: black;
   display: flex;
   justify-content: center;
+  overflow: hidden;
+}
+
+.hidden {
+  opacity: 0;
+  transform: translateX(100%); /* Move the card off-screen to the right */
 }
 
 #main-content {
@@ -42,9 +48,12 @@ body {
 #cat {
   box-shadow: 0 0 16px black;
   width: 90%;
-  border-radius: 8px;
+  border-radius: 14px;
   overflow: hidden;
   margin-bottom: 10px;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  opacity: 1;
+  transition: all 0.5s ease-in-out;
 }
 
 .cat-img {

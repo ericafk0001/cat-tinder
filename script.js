@@ -1,9 +1,53 @@
 document.addEventListener("DOMContentLoaded", (event) => {
   console.log("DOMCONTENTLoaded");
 
+  const likeBtn = document.getElementById("like");
+  const nopeBtn = document.getElementById("nope");
+  const likeSound = document.getElementById("like-sound");
+  const nopeSound = document.getElementById("nope-sound");
+
+  likeBtn.addEventListener("click", function () {
+    console.log("liked");
+    likeSound.play();
+    const cat = document.getElementById("cat");
+    cat.style.transform = "translateY(70vh)";
+    cat.style.opacity = "0";
+    setTimeout(() => {
+      cat.style.transform = "translateY(-100vh)";
+      while (cat.firstChild) {
+        cat.removeChild(cat.firstChild);
+      }
+    }, 300);
+
+    setTimeout(() => {
+      fetchCat();
+      cat.style.transform = "translateY(0vh)";
+      cat.style.opacity = "1";
+    }, 600);
+  });
+
+  nopeBtn.addEventListener("click", function () {
+    console.log("noped");
+    nopeSound.play();
+    const cat = document.getElementById("cat");
+    cat.style.transform = "translateY(70vh)";
+    cat.style.opacity = "0";
+    setTimeout(() => {
+      cat.style.transform = "translateY(-100vh)";
+      while (cat.firstChild) {
+        cat.removeChild(cat.firstChild);
+      }
+    }, 300);
+
+    setTimeout(() => {
+      fetchCat();
+      cat.style.transform = "translateY(0vh)";
+      cat.style.opacity = "1";
+    }, 600);
+  });
+
   const jobs = [
     "Software Developer",
-    "Graphic Designer",
     "Data Scientist",
     "Product Manager",
     "Marketing Specialist",
@@ -57,7 +101,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     "cats/cat4268.jpg",
     "cats/cat4686.jpg",
     "cats/cat4770.jpg",
-    "cats/cat4652.jpg",
+    "cats/cat4852.jpg",
   ];
 
   function shuffleArray(array) {
@@ -116,25 +160,28 @@ document.addEventListener("DOMContentLoaded", (event) => {
     document.querySelector("#cat").appendChild(catDiv);
   }
 
-  fetch("https://randomuser.me/api/?nat=us,ca,no,gb,ch")
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-      const cats = data.results.map((user) => ({
-        name: `${user.name.first} ${user.name.last}`,
-        age: user.dob.age,
-        occupation: jobs[Math.floor(Math.random() * jobs.length)],
-        location: user.location.country,
-      }));
+  function fetchCat() {
+    fetch("https://randomuser.me/api/?nat=us,ca,no,gb,ch")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        const cats = data.results.map((user) => ({
+          name: `${user.name.first} ${user.name.last}`,
+          age: user.dob.age,
+          occupation: jobs[Math.floor(Math.random() * jobs.length)],
+          location: user.location.country,
+        }));
 
-      cats.forEach((cat) => {
-        if (catImages.length === 0) {
-          console.error("No more images left to assign");
-          return;
-        }
-        const imageSrc = catImages.pop();
-        createProfile(cat, imageSrc);
-      });
-    })
-    .catch((error) => console.error("Error fetching data:", error));
+        cats.forEach((cat) => {
+          if (catImages.length === 0) {
+            console.error("No more images left to assign");
+            return;
+          }
+          const imageSrc = catImages.pop();
+          createProfile(cat, imageSrc);
+        });
+      })
+      .catch((error) => console.error("Error fetching data:", error));
+  }
+  fetchCat();
 });
