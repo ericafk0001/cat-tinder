@@ -47,11 +47,11 @@ body {
   margin-bottom: 10px;
 }
 
-#cat-img {
+.cat-img {
   width: 100%;
 }
 
-#second-content {
+.second-content {
   padding: 12px;
   margin-bottom: 10px;
 }
